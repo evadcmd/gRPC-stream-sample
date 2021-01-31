@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package example;
+
+service Func {
+    rpc Simple(Param) returns (Res) {}
+    rpc StreamResp(Param) returns (stream Res) {}
+    rpc StreamReq(stream Param) returns (Res) {}
+    rpc BiStream(stream Param) returns (stream Res) {}
+}
+
+message Param {
+    int32 x = 1;
+    int32 y = 2;
+    int32 z = 3;
+}
+
+message Res {
+    int32 value = 1;
+}
