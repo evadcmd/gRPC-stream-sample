@@ -1,0 +1,21 @@
+version: "3"
+services:
+  server:
+    container_name: demo-grpc-server
+    image: demo-grpc-server
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+      target: server
+    ports:
+      - 50050:50050
+  client:
+    container_name: demo-grpc-client
+    image: demo-grpc-client
+    tty: true # keep client server alive
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+      target: client
+    environment:
+      - IN_CONTAINER=true
