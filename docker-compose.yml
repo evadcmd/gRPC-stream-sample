@@ -1,21 +1,19 @@
 version: "3"
 services:
   server:
-    container_name: demo-grpc-server
-    image: demo-grpc-server
+    container_name: grpc-demo-server
+    image: mchiu2006/grpc-demo-server
     build:
       context: .
       dockerfile: ./Dockerfile
       target: server
-    ports:
-      - 50050:50050
-  client:
-    container_name: demo-grpc-client
-    image: demo-grpc-client
-    tty: true # keep client server alive
+  proxy:
+    container_name: grpc-envoy-proxy
+    image: mchiu2006/grpc-envoy-proxy
     build:
       context: .
       dockerfile: ./Dockerfile
-      target: client
-    environment:
-      - IN_CONTAINER=true
+      target: proxy
+    ports:
+      - 8070:8070
+      - 9901:9901

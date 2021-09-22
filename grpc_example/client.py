@@ -12,7 +12,7 @@ logging.basicConfig(
     datefmt='%Y%m%d %H:%M:%S'
 )
 
-URL = f'{"server" if os.environ.get("IN_CONTAINER", False) else "localhost"}:50050'
+URL = f'{"proxy" if os.environ.get("IN_CONTAINER", False) else "localhost"}:8070'
 
 params = [
     Param(x=1, y=3, z=5),
