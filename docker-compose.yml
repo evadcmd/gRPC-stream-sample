@@ -7,6 +7,8 @@ services:
       context: .
       dockerfile: ./Dockerfile
       target: server
+    ports:
+      - 50050:50050
   proxy:
     container_name: grpc-envoy-proxy
     image: mchiu2006/grpc-envoy-proxy
