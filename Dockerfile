@@ -1,5 +1,5 @@
 FROM python:3.13-slim AS server
-ENV APPDIR /opt/grpc_example/
+ENV APPDIR=/opt/grpc_example/
 WORKDIR ${APPDIR}
 
 # install uv
@@ -10,7 +10,7 @@ COPY pyproject.toml uv.lock* ${APPDIR}
 RUN uv sync --frozen --no-dev
 
 COPY grpc_example/ ${APPDIR}
-ENTRYPOINT ["python", "server.py"]
+ENTRYPOINT ["/opt/grpc_example/.venv/bin/python", "server.py"]
 
 FROM envoyproxy/envoy:v1.37.1 AS proxy
 COPY envoy.yaml /etc/envoy/envoy.yaml
