@@ -1,3 +1,9 @@
 {
-	"python.pythonPath": "/Users/Qiuminda/Documents/GitHub/Python/gRPC-stream-sample/.venv/bin/python3.9"
+    "[python]": {
+        "editor.defaultFormatter": "charliermarsh.ruff",
+        "editor.formatOnSave": true,
+        "editor.codeActionsOnSave": {
+            "source.organizeImports": "always",
+        },
+    },
 }
