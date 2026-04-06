@@ -15,11 +15,15 @@ including:
 (in project folder)
 
 ```bash
+$ brew install uv just
+```
+
+```bash
 $ docker-compose up -d --build
 ```
 
 ```bash
-$ python grpc_sample/client.py
+$ just send
 ```
 
 ### demo-gRPC-client -> demo-gRPC-server
