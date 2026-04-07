@@ -1,5 +1,10 @@
 send:
-    uv run python grpc_example/client.py
+    uv run python src/client.py
 
 generate:
-    uv run python -m grpc_tools.protoc -I ./proto --python_out=grpc_example/grpc_src --grpc_python_out=grpc_example/grpc_src proto/example.proto
+    uv run python -m grpc_tools.protoc --proto_path=. \
+        --python_out=src \
+        --grpc_python_out=src \
+        --mypy_grpc_out=src \
+        --mypy_out=src \
+        schema/service.proto

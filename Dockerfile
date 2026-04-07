@@ -10,7 +10,7 @@ FROM python:3.13-slim AS server
 ENV APPDIR=/opt/grpc_example/
 WORKDIR ${APPDIR}
 
-COPY grpc_example/ ${APPDIR}
+COPY src ${APPDIR}
 COPY --from=builder ${APPDIR}/.venv/lib/python3.13/site-packages /usr/local/lib/python3.13/site-packages
 ENTRYPOINT ["python", "server.py"]
 

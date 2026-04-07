@@ -3,7 +3,7 @@
 import grpc
 import warnings
 
-import grpc_src.example_pb2 as example__pb2
+from schema import service_pb2 as schema_dot_service__pb2
 
 GRPC_GENERATED_VERSION = '1.80.0'
 GRPC_VERSION = grpc.__version__
@@ -18,7 +18,7 @@ except ImportError:
 if _version_not_supported:
     raise RuntimeError(
         f'The grpc package installed is at version {GRPC_VERSION},'
-        + ' but the generated code in example_pb2_grpc.py depends on'
+        + ' but the generated code in schema/service_pb2_grpc.py depends on'
         + f' grpcio>={GRPC_GENERATED_VERSION}.'
         + f' Please upgrade your grpc module to grpcio>={GRPC_GENERATED_VERSION}'
         + f' or downgrade your generated code using grpcio-tools<={GRPC_VERSION}.'
@@ -35,24 +35,24 @@ class FuncStub(object):
             channel: A grpc.Channel.
         """
         self.Simple = channel.unary_unary(
-                '/example.Func/Simple',
-                request_serializer=example__pb2.Param.SerializeToString,
-                response_deserializer=example__pb2.Res.FromString,
+                '/Func/Simple',
+                request_serializer=schema_dot_service__pb2.Param.SerializeToString,
+                response_deserializer=schema_dot_service__pb2.Res.FromString,
                 _registered_method=True)
         self.StreamResp = channel.unary_stream(
-                '/example.Func/StreamResp',
-                request_serializer=example__pb2.Param.SerializeToString,
-                response_deserializer=example__pb2.Res.FromString,
+                '/Func/StreamResp',
+                request_serializer=schema_dot_service__pb2.Param.SerializeToString,
+                response_deserializer=schema_dot_service__pb2.Res.FromString,
                 _registered_method=True)
         self.StreamReq = channel.stream_unary(
-                '/example.Func/StreamReq',
-                request_serializer=example__pb2.Param.SerializeToString,
-                response_deserializer=example__pb2.Res.FromString,
+                '/Func/StreamReq',
+                request_serializer=schema_dot_service__pb2.Param.SerializeToString,
+                response_deserializer=schema_dot_service__pb2.Res.FromString,
                 _registered_method=True)
         self.BiStream = channel.stream_stream(
-                '/example.Func/BiStream',
-                request_serializer=example__pb2.Param.SerializeToString,
-                response_deserializer=example__pb2.Res.FromString,
+                '/Func/BiStream',
+                request_serializer=schema_dot_service__pb2.Param.SerializeToString,
+                response_deserializer=schema_dot_service__pb2.Res.FromString,
                 _registered_method=True)
 
 
@@ -88,29 +88,29 @@ def add_FuncServicer_to_server(servicer, server):
     rpc_method_handlers = {
             'Simple': grpc.unary_unary_rpc_method_handler(
                     servicer.Simple,
-                    request_deserializer=example__pb2.Param.FromString,
-                    response_serializer=example__pb2.Res.SerializeToString,
+                    request_deserializer=schema_dot_service__pb2.Param.FromString,
+                    response_serializer=schema_dot_service__pb2.Res.SerializeToString,
             ),
             'StreamResp': grpc.unary_stream_rpc_method_handler(
                     servicer.StreamResp,
-                    request_deserializer=example__pb2.Param.FromString,
-                    response_serializer=example__pb2.Res.SerializeToString,
+                    request_deserializer=schema_dot_service__pb2.Param.FromString,
+                    response_serializer=schema_dot_service__pb2.Res.SerializeToString,
             ),
             'StreamReq': grpc.stream_unary_rpc_method_handler(
                     servicer.StreamReq,
-                    request_deserializer=example__pb2.Param.FromString,
-                    response_serializer=example__pb2.Res.SerializeToString,
+                    request_deserializer=schema_dot_service__pb2.Param.FromString,
+                    response_serializer=schema_dot_service__pb2.Res.SerializeToString,
             ),
             'BiStream': grpc.stream_stream_rpc_method_handler(
                     servicer.BiStream,
-                    request_deserializer=example__pb2.Param.FromString,
-                    response_serializer=example__pb2.Res.SerializeToString,
+                    request_deserializer=schema_dot_service__pb2.Param.FromString,
+                    response_serializer=schema_dot_service__pb2.Res.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
-            'example.Func', rpc_method_handlers)
+            'Func', rpc_method_handlers)
     server.add_generic_rpc_handlers((generic_handler,))
-    server.add_registered_method_handlers('example.Func', rpc_method_handlers)
+    server.add_registered_method_handlers('Func', rpc_method_handlers)
 
 
  # This class is part of an EXPERIMENTAL API.
@@ -131,9 +131,9 @@ class Func(object):
         return grpc.experimental.unary_unary(
             request,
             target,
-            '/example.Func/Simple',
-            example__pb2.Param.SerializeToString,
-            example__pb2.Res.FromString,
+            '/Func/Simple',
+            schema_dot_service__pb2.Param.SerializeToString,
+            schema_dot_service__pb2.Res.FromString,
             options,
             channel_credentials,
             insecure,
@@ -158,9 +158,9 @@ class Func(object):
         return grpc.experimental.unary_stream(
             request,
             target,
-            '/example.Func/StreamResp',
-            example__pb2.Param.SerializeToString,
-            example__pb2.Res.FromString,
+            '/Func/StreamResp',
+            schema_dot_service__pb2.Param.SerializeToString,
+            schema_dot_service__pb2.Res.FromString,
             options,
             channel_credentials,
             insecure,
@@ -185,9 +185,9 @@ class Func(object):
         return grpc.experimental.stream_unary(
             request_iterator,
             target,
-            '/example.Func/StreamReq',
-            example__pb2.Param.SerializeToString,
-            example__pb2.Res.FromString,
+            '/Func/StreamReq',
+            schema_dot_service__pb2.Param.SerializeToString,
+            schema_dot_service__pb2.Res.FromString,
             options,
             channel_credentials,
             insecure,
@@ -212,9 +212,9 @@ class Func(object):
         return grpc.experimental.stream_stream(
             request_iterator,
             target,
-            '/example.Func/BiStream',
-            example__pb2.Param.SerializeToString,
-            example__pb2.Res.FromString,
+            '/Func/BiStream',
+            schema_dot_service__pb2.Param.SerializeToString,
+            schema_dot_service__pb2.Res.FromString,
             options,
             channel_credentials,
             insecure,

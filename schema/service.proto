@@ -1,7 +1,5 @@
 syntax = "proto3";
 
-package example;
-
 service Func {
     rpc Simple(Param) returns (Res) {}
     rpc StreamResp(Param) returns (stream Res) {}
